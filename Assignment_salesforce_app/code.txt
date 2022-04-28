@@ -1,0 +1,24 @@
+Please find the below program.
+ 
+public class MethodOverloading {
+    
+    public void areaofCircle (Decimal x){
+        Decimal Area=3.14*x*x;
+        system.debug('Area of circle is'+Area);
+    }
+public void areaofRectangle (Decimal x,Decimal y){
+        Decimal Area=x*y;
+        system.debug('Area of Rectangle is'+Area);
+    }
+    public void areaofTriangle (Decimal x,Decimal y){
+        Decimal Area=0.5*x*y;
+        system.debug('Area of Triangle is'+Area);
+    }
+}
+
+In the anonomous window you need to execute below to see the results and open the log file.
+ 
+MethodOverloading m = new MethodOverloading();
+m.areaofCircle(3.2);
+m.areaofRectangle(3.2,2);
+m.areaofTriangle(5,6);
