@@ -16,7 +16,7 @@ public void areaofRectangle (Decimal x,Decimal y){
     }
 }
 
-In the anonomous window you need to execute below to see the results and open the log file.
+//In the anonomous window you need to execute below to see the results and open the log file.
  
 MethodOverloading m = new MethodOverloading();
 m.areaofCircle(3.2);

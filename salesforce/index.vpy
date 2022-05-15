@@ -24,7 +24,9 @@
                     <apex:selectOption itemValue="mod" itemLabel="Modulo Division"/>
                 </apex:selectRadio>
             </apex:pageBlockSectionItem>
-            <apex:pageBlockSectionItem >               
+
+            <apex:pageBlockSectionItem > 
+                          
             </apex:pageBlockSectionItem>       
             <apex:pageBlockSectionItem >
                 <apex:outputLabel value="Result"/>

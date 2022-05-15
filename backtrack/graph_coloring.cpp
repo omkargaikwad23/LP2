@@ -8,7 +8,6 @@ space: O(N)
 #include <bits/stdc++.h>
 using namespace std;
 
-
 class Graph{
     int N;
     vector<int> *g;
@@ -34,7 +33,6 @@ public:
 
     bool solve(int node, vector<int> &color, int M){
         if(node == N) return true;
-
         for(int i=1; i<=M; i++){
             if(isPossible(node, color, i)){
                 color[node] = i;
@@ -42,6 +40,7 @@ public:
                 color[node] = 0; // erase color
             }
         }
+        return false;
     }
 
     vector<int> colourTheGraph(int M){
