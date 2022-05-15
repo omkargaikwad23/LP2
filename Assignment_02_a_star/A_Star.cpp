@@ -16,7 +16,6 @@ public:
         this->path = path;
         src = {0,0};
         dest = {4,2};
-        path[src.first][src.second] = 'S';
     }
 
     void printPath(){
@@ -35,7 +34,7 @@ public:
             int tempy = cellInfo[x][y].parentj;
             x = tempx, y = tempy;
         }
-        path[src.first][src.second] = 'S';
+        path[src.first][src.second] = '$';
     }
 
     void A_StarSearch(){
@@ -43,8 +42,8 @@ public:
         memset(closeList, false, sizeof(closeList));
         using pdii = pair<double, pair<int, int>>;
         priority_queue<pdii, vector<pdii>, greater<pdii>> openList; // <f,<i,j>> 
-        vector<vector<Cell>> cellInfo;
-        cellInfo.resize(R, vector<Cell>(C));
+        
+        vector<vector<Cell>> cellInfo(R, vector<Cell>(C));
         for(int i=0; i<R; i++){
             for(int j=0; j<C; j++){
                 cellInfo[i][j].f = FLT_MAX;
@@ -55,14 +54,12 @@ public:
             }
         }
 
-        int i = src.first, j = src.second;
-        cellInfo[i][j].f = 0.0;
-        cellInfo[i][j].g = 0.0;
-        cellInfo[i][j].h = 0.0;
-        // cellInfo[i][j].parenti = i;
-        // cellInfo[i][j].parentj = j; 
+        cellInfo[src.first][src.second].f = 0.0;
+        cellInfo[src.first][src.second].g = 0.0;
+        cellInfo[src.first][src.second].h = 0.0;
+
         vector<pair<int, int>> dir = {{0, 1},{1,0},{-1,0},{0,-1}};
-        openList.push({0.0, {i, j}});
+        openList.push({0.0, {src.first, src.second}});
         bool foundDest = false;
 
         while(!openList.empty()){
@@ -71,7 +68,6 @@ public:
             int curi = p.second.first;
             int curj = p.second.second;
             closeList[curi][curj] = true;
-            path[curi][curj] = '+';
             if(curi==dest.first && curj==dest.second){ 
                 foundDest = true; break;
             }
@@ -80,9 +76,9 @@ public:
                 int newi = curi + d.first;
                 int newj = curj + d.second;
                 if(newi<0 || newj<0 || newi>=R || newj>=C) continue;
-                if(path[newi][newj]=='*' || closeList[newi][newj]) continue;
+                if(path[newi][newj] == '*' || closeList[newi][newj]) continue;
 
-                int gNew = cellInfo[i][j].g + 1.0;
+                int gNew = cellInfo[curi][curj].g + 1.0;
                 int hNew = (double)sqrt(pow(newi-dest.first, 2) + pow(newj-dest.second, 2));
                 int fNew = gNew + hNew;
 
@@ -100,8 +96,9 @@ public:
             tracePath(cellInfo);
             cout << "Found my destiny!!\n";
             printPath();
-        }else
+        }else{
             cout << "Cannot reach destiny!!\n";
+        }
     }
 };
 
