@@ -6,11 +6,11 @@ Install necessary libraries
 
 
 Add user to libvirt group
-```sudo adduser akshat libvirt```
+```sudo adduser omkar libvirt```
 
 
 Add user to kvm group
-```sudo adduser akshat kvm```
+```sudo adduser omakr kvm```
 
 
 To check if virtualization is active or not
